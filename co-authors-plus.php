@@ -756,7 +756,7 @@ class CoAuthors_Plus {
 						$current_user_query = $wpdb->term_taxonomy . '.taxonomy = \'' . $this->coauthor_taxonomy . '\' AND ' . $wpdb->term_taxonomy . '.term_id = \'' . $current_coauthor_term->term_id . '\'';
 						$this->having_terms .= ' ' . $wpdb->term_taxonomy . '.term_id = \'' . $current_coauthor_term->term_id . '\' OR ';
 
-						$where = preg_replace( '/(\b(?:' . $wpdb->posts . '\.)?post_author\s*=\s*(' . get_current_user_id() . ') )/', $current_user_query . ' ', $where, -1 ); #' . $wpdb->postmeta . '.meta_id IS NOT NULL AND}
+						$where = preg_replace( '/(\b(?:' . $wpdb->posts . '\.)?post_author\s*=\s*(' . get_current_user_id() . ')\b)/', $current_user_query . ' ', $where, -1 ); #' . $wpdb->postmeta . '.meta_id IS NOT NULL AND}
 					}
 				}
 
@@ -1707,9 +1707,9 @@ class CoAuthors_Plus {
 			return 0;
 		}
 	}
-	
+
 	/**
-	 * Filter to display author image if exists instead of avatar. 
+	 * Filter to display author image if exists instead of avatar.
 	 *
 	 * @param $url string Avatar URL
 	 * @param $id  int Author ID
